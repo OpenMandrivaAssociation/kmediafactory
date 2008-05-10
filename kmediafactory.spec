@@ -1,5 +1,3 @@
-%define	major	0
-%define	libname	%mklibname %{name} %{major}
 %define develname %mklibname %name -d
 
 Name:		kmediafactory
@@ -17,6 +15,7 @@ Buildrequires:	desktop-file-utils
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Obsoletes:      kde4-%name <= 0.6.0
 Provides:       kde4-%name = %version
+Conflicts:	kde3-%name
 
 %description
 KMediaFactory is an easy to use template based dvd authoring tool.
@@ -46,7 +45,7 @@ in three simple steps.
 %package -n %libkmediafactorykstore
 Summary:    %name library
 Group:      System/Libraries
-Obsoletes:  %{libname} <= 0.6.0 
+Obsoletes:  %{mklibname %name 0} >= 0.6.0 
 
 %description -n %libkmediafactorykstore
 %name library.
@@ -66,7 +65,7 @@ Obsoletes:  %{libname} <= 0.6.0
 %package -n %libkmf
 Summary: %name library
 Group: System/Libraries
-Obsoletes:  %{libname} <= 0.6.0
+Obsoletes:  %{mklibname %name 0} >= 0.6.0
 
 %description -n %libkmf
 %name library.
@@ -86,7 +85,7 @@ Obsoletes:  %{libname} <= 0.6.0
 %package -n %libkmediafactoryinterfaces
 Summary: %name library
 Group: System/Libraries
-Obsoletes:  %{libname} <= 0.6.0
+Obsoletes:  %{mklibname %name 0} >= 0.6.0
 
 %description -n %libkmediafactoryinterfaces
 %name library.
