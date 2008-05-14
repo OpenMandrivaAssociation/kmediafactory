@@ -5,6 +5,7 @@ Version:	0.6.0
 Release:	%mkrel 4
 URL:		http://kotisivu.dnainternet.fi/damu0/software/kmediafactory/index.html
 Source0:	http://aryhma.oy.cx/damu/software/kmediafactory/%{name}-%{version}.tar.bz2
+Patch0:		kmediafactory-0.6.0-cmake-2.6.patch
 License:	GPLv2+
 Group:		Publishing
 Summary:	DVD menu generator
@@ -122,6 +123,9 @@ Development libraries and headers for %{name}.
 
 %prep
 %setup -q -n %{name}-%{version}
+cd plugins/template
+%patch0 -p0 -b .cmake26
+cd - 
 
 %build
 %cmake_kde4
