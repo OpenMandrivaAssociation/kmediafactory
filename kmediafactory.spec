@@ -2,7 +2,7 @@
 
 Name:		kmediafactory
 Version:	0.6.0
-Release:	%mkrel 3
+Release:	%mkrel 4
 URL:		http://kotisivu.dnainternet.fi/damu0/software/kmediafactory/index.html
 Source0:	http://aryhma.oy.cx/damu/software/kmediafactory/%{name}-%{version}.tar.bz2
 License:	GPLv2+
@@ -13,8 +13,8 @@ BuildRequires:	libtheora-devel libxine-devel dvdauthor dvd-slideshow kdelibs4-de
 BuildRequires:	zip
 Buildrequires:	desktop-file-utils
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-Obsoletes:      kde4-%name <= 0.6.0
-Provides:       kde4-%name = %version
+Obsoletes:      kde4-%name < 0.6.0-4
+Provides:       kde4-%name = %version-%release
 Conflicts:	kde3-%name
 
 %description
@@ -45,7 +45,7 @@ in three simple steps.
 %package -n %libkmediafactorykstore
 Summary:    %name library
 Group:      System/Libraries
-Obsoletes:  %{mklibname %name 0} >= 0.6.0 
+Obsoletes:  %{mklibname kde4-kmediafactory 0}
 
 %description -n %libkmediafactorykstore
 %name library.
@@ -65,7 +65,7 @@ Obsoletes:  %{mklibname %name 0} >= 0.6.0
 %package -n %libkmf
 Summary: %name library
 Group: System/Libraries
-Obsoletes:  %{mklibname %name 0} >= 0.6.0
+Obsoletes:  %{mklibname kde4-kmediafactory 0}
 
 %description -n %libkmf
 %name library.
@@ -85,7 +85,7 @@ Obsoletes:  %{mklibname %name 0} >= 0.6.0
 %package -n %libkmediafactoryinterfaces
 Summary: %name library
 Group: System/Libraries
-Obsoletes:  %{mklibname %name 0} >= 0.6.0
+Obsoletes:  %{mklibname kde4-kmediafactory 0}
 
 %description -n %libkmediafactoryinterfaces
 %name library.
@@ -108,6 +108,7 @@ Requires:       %{libkmediafactorykstore} = %{version}
 Provides:	lib%{name}-devel = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
 Obsoletes:	%mklibname -d %name 0
+Obsoletes:	%mklibname kde4-kmediafactory -d
 
 %description -n	%{develname}
 Development libraries and headers for %{name}.
@@ -129,7 +130,7 @@ Development libraries and headers for %{name}.
 %install
 rm -rf %{buildroot}
 pushd build
- %makeinstall_std
+%makeinstall_std
 popd
 
 desktop-file-install --vendor='' \
