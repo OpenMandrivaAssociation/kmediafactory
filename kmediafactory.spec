@@ -51,8 +51,12 @@ Obsoletes:  %{mklibname kde4-kmediafactory 0}
 %description -n %libkmediafactorykstore
 %name library.
 
+%if %mdkversion < 200900
 %post -n %libkmediafactorykstore -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %libkmediafactorykstore -p /sbin/ldconfig
+%endif
 
 %files -n %libkmediafactorykstore
 %defattr(-,root,root,-)
@@ -71,8 +75,12 @@ Obsoletes:  %{mklibname kde4-kmediafactory 0}
 %description -n %libkmf
 %name library.
 
+%if %mdkversion < 200900
 %post -n %libkmf -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %libkmf -p /sbin/ldconfig
+%endif
 
 %files -n %libkmf
 %defattr(-,root,root,-)
@@ -91,8 +99,12 @@ Obsoletes:  %{mklibname kde4-kmediafactory 0}
 %description -n %libkmediafactoryinterfaces
 %name library.
 
+%if %mdkversion < 200900
 %post -n %libkmediafactoryinterfaces -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %libkmediafactoryinterfaces -p /sbin/ldconfig
+%endif
 
 %files -n %libkmediafactoryinterfaces
 %defattr(-,root,root,-)
