@@ -2,7 +2,7 @@
 
 Name:		kmediafactory
 Version:	0.6.0
-Release:	%mkrel 4
+Release:	%mkrel 5
 URL:		http://kotisivu.dnainternet.fi/damu0/software/kmediafactory/index.html
 Source0:	http://aryhma.oy.cx/damu/software/kmediafactory/%{name}-%{version}.tar.bz2
 Patch0:		kmediafactory-0.6.0-cmake-2.6.patch
@@ -16,7 +16,6 @@ Buildrequires:	desktop-file-utils
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Obsoletes:      kde4-%name < 0.6.0-4
 Provides:       kde4-%name = %version-%release
-Conflicts:	kde3-%name
 
 %description
 KMediaFactory is an easy to use template based dvd authoring tool.
