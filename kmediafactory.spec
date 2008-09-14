@@ -35,7 +35,6 @@ in three simple steps.
 %{_kde_datadir}/kde4/servicetypes/*
 %{_kde_datadir}/mime/packages/kmediafactory.xml
 %{_kde_libdir}/kde4/*
-%{_kde_docdir}/HTML/en/kmediafactory
 
 #--------------------------------------------------------------------
 
