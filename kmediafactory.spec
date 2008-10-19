@@ -2,7 +2,7 @@
 
 Name:		kmediafactory
 Version:	0.6.0
-Release:	%mkrel 6
+Release:	%mkrel 7
 URL:		http://aryhma.oy.cx/damu/software/kmediafactory/
 Source0:	http://aryhma.oy.cx/damu/software/kmediafactory/%{name}-%{version}.tar.bz2
 Patch0:		kmediafactory-0.6.0-cmake-2.6.patch
