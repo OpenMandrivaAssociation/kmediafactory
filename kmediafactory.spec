@@ -2,10 +2,11 @@
 
 Name:		kmediafactory
 Version:	0.6.0
-Release:	%mkrel 7
+Release:	%mkrel 8
 URL:		http://aryhma.oy.cx/damu/software/kmediafactory/
 Source0:	http://aryhma.oy.cx/damu/software/kmediafactory/%{name}-%{version}.tar.bz2
 Patch0:		kmediafactory-0.6.0-cmake-2.6.patch
+Patch1:         kmediafactory-0.6.0-library_link.patch
 License:	GPLv2+
 Group:		Publishing
 Summary:	DVD menu generator
@@ -136,6 +137,7 @@ Development libraries and headers for %{name}.
 cd plugins/template
 %patch0 -p0 -b .cmake26
 cd - 
+%patch1 -p0
 
 %build
 %cmake_kde4
