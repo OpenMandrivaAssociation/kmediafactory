@@ -1,19 +1,33 @@
 %define develname %mklibname %name -d
 
 Name:		kmediafactory
-Version:	0.6.0
-Release:	%mkrel 8
+Version:	0.7.2
+Release:	%mkrel 1
 URL:		http://aryhma.oy.cx/damu/software/kmediafactory/
 Source0:	http://aryhma.oy.cx/damu/software/kmediafactory/%{name}-%{version}.tar.bz2
-Patch0:		kmediafactory-0.6.0-cmake-2.6.patch
-Patch1:         kmediafactory-0.6.0-library_link.patch
 License:	GPLv2+
 Group:		Publishing
 Summary:	DVD menu generator
-BuildRequires:	imagemagick-devel mjpegtools libmjpegtools-devel libdv-devel libdvdread-devel
-BuildRequires:	libtheora-devel libxine-devel dvdauthor dvd-slideshow kdelibs4-devel
+BuildRequires:	kdelibs4-devel
+BuildRequires:	fontconfig-devel
+BuildRequires:	phonon-devel
+BuildRequires:	gettext
 BuildRequires:	zip
-Buildrequires:	desktop-file-utils
+BuildRequires:	dvdauthor
+BuildRequires:	ffmpeg
+BuildRequires:	mjpegtools
+BuildRequires:	libdvdread-devel
+BuildRequires:	dvd-slideshow
+BuildRequires:	k3b
+BuildRequires:	xine-ui
+BuildRequires:	ghostscript
+Requires:	zip
+Requires:	dvdauthor
+Requires:	ffmpeg
+Requires:	mjpegtools
+Requires:	dvd-slideshow
+Requires:	k3b
+Requires:	xine-ui
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Obsoletes:      kde4-%name < 0.6.0-4
 Provides:       kde4-%name = %version-%release
@@ -39,7 +53,7 @@ in three simple steps.
 
 #--------------------------------------------------------------------
 
-%define kmediafactorykstore_major 1
+%define kmediafactorykstore_major 0
 %define libkmediafactorykstore %mklibname kmediafactorykstore %{kmediafactorykstore_major}
 
 %package -n %libkmediafactorykstore
@@ -50,20 +64,13 @@ Obsoletes:  %{mklibname kde4-kmediafactory 0}
 %description -n %libkmediafactorykstore
 %name library.
 
-%if %mdkversion < 200900
-%post -n %libkmediafactorykstore -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %libkmediafactorykstore -p /sbin/ldconfig
-%endif
-
 %files -n %libkmediafactorykstore
 %defattr(-,root,root,-)
 %_kde_libdir/libkmediafactorykstore.so.%{kmediafactorykstore_major}*
 
 #--------------------------------------------------------------------
 
-%define kmf_major 1
+%define kmf_major 0
 %define libkmf %mklibname kmf %{kmf_major}
 
 %package -n %libkmf
@@ -74,20 +81,13 @@ Obsoletes:  %{mklibname kde4-kmediafactory 0}
 %description -n %libkmf
 %name library.
 
-%if %mdkversion < 200900
-%post -n %libkmf -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %libkmf -p /sbin/ldconfig
-%endif
-
 %files -n %libkmf
 %defattr(-,root,root,-)
 %_kde_libdir/libkmf.so.%{kmf_major}*
 
 #--------------------------------------------------------------------
 
-%define kmediafactoryinterfaces_major 1
+%define kmediafactoryinterfaces_major 0
 %define libkmediafactoryinterfaces %mklibname kmediafactoryinterfaces %{kmediafactoryinterfaces_major}
 
 %package -n %libkmediafactoryinterfaces
@@ -97,13 +97,6 @@ Obsoletes:  %{mklibname kde4-kmediafactory 0}
 
 %description -n %libkmediafactoryinterfaces
 %name library.
-
-%if %mdkversion < 200900
-%post -n %libkmediafactoryinterfaces -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %libkmediafactoryinterfaces -p /sbin/ldconfig
-%endif
 
 %files -n %libkmediafactoryinterfaces
 %defattr(-,root,root,-)
@@ -134,10 +127,6 @@ Development libraries and headers for %{name}.
 
 %prep
 %setup -q -n %{name}-%{version}
-cd plugins/template
-%patch0 -p0 -b .cmake26
-cd - 
-%patch1 -p0
 
 %build
 %cmake_kde4
@@ -145,9 +134,7 @@ cd -
 
 %install
 rm -rf %{buildroot}
-pushd build
-%makeinstall_std
-popd
+%makeinstall_std -C build
 
 desktop-file-install --vendor='' \
 	--dir=%buildroot%{_kde_datadir}/applications/kde4 \
