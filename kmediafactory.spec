@@ -1,10 +1,10 @@
 %define develname %mklibname %name -d
 
 Name:		kmediafactory
-Version:	0.7.2
+Version:	0.8.0
 Release:	%mkrel 1
-URL:		http://aryhma.oy.cx/damu/software/kmediafactory/
-Source0:	http://aryhma.oy.cx/damu/software/kmediafactory/%{name}-%{version}.tar.bz2
+URL:		http://code.google.com/p/kmediafactory/
+Source0:	http://kmediafactory.googlecode.com/files/%{name}-%{version}.tar.bz2
 License:	GPLv2+
 Group:		Publishing
 Summary:	DVD menu generator
