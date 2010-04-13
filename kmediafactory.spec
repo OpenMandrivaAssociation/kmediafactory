@@ -22,6 +22,7 @@ BuildRequires:	dvd-slideshow
 BuildRequires:	k3b
 BuildRequires:	xine-ui
 BuildRequires:	ghostscript
+BuildRequires:	kdegraphics4-devel
 Requires:	zip
 Requires:	dvdauthor
 Requires:	ffmpeg
