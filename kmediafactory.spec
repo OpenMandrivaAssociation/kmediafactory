@@ -5,6 +5,7 @@ Version:	0.8.0
 Release:	%mkrel 1
 URL:		http://code.google.com/p/kmediafactory/
 Source0:	http://kmediafactory.googlecode.com/files/%{name}-%{version}.tar.bz2
+Patch0:		kmediafactory-0.8.0-r610.patch
 License:	GPLv2+
 Group:		Publishing
 Summary:	DVD menu generator
@@ -127,6 +128,7 @@ Development libraries and headers for %{name}.
 
 %prep
 %setup -q -n %{name}-%{version}
+%patch0 -p0
 
 %build
 %cmake_kde4
