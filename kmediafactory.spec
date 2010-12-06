@@ -2,7 +2,7 @@
 
 Name:		kmediafactory
 Version:	0.8.0
-Release:	%mkrel 1
+Release:	%mkrel 2
 URL:		http://code.google.com/p/kmediafactory/
 Source0:	http://kmediafactory.googlecode.com/files/%{name}-%{version}.tar.bz2
 Patch0:		kmediafactory-0.8.0-r610.patch
