@@ -1,11 +1,11 @@
 %define develname %mklibname %name -d
 
 Name:		kmediafactory
-Version:	0.8.0
-Release:	%mkrel 2
+Version:	0.8.1
+Release:	1
 URL:		http://code.google.com/p/kmediafactory/
 Source0:	http://kmediafactory.googlecode.com/files/%{name}-%{version}.tar.bz2
-Patch0:		kmediafactory-0.8.0-r610.patch
+Patch0:		kmediafactory-0.8.1-compile.patch
 License:	GPLv2+
 Group:		Publishing
 Summary:	DVD menu generator
@@ -22,7 +22,7 @@ BuildRequires:	dvd-slideshow
 BuildRequires:	k3b
 BuildRequires:	xine-ui
 BuildRequires:	ghostscript
-BuildRequires:	kdegraphics4-devel
+BuildRequires:	pkgconfig(libkexiv2)
 Requires:	zip
 Requires:	dvdauthor
 Requires:	ffmpeg
@@ -30,7 +30,6 @@ Requires:	mjpegtools
 Requires:	dvd-slideshow
 Requires:	k3b
 Requires:	xine-ui
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Obsoletes:      kde4-%name < 0.6.0-4
 Provides:       kde4-%name = %version-%release
 
@@ -129,7 +128,7 @@ Development libraries and headers for %{name}.
 
 %prep
 %setup -q -n %{name}-%{version}
-%patch0 -p0
+%apply_patches
 
 %build
 %cmake_kde4
