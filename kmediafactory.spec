@@ -2,10 +2,11 @@
 
 Name:		kmediafactory
 Version:	0.8.1
-Release:	1
+Release:	2
 URL:		http://code.google.com/p/kmediafactory/
 Source0:	http://kmediafactory.googlecode.com/files/%{name}-%{version}.tar.bz2
 Patch0:		kmediafactory-0.8.1-compile.patch
+Patch1:		kmediafactory-0.8.1-preview-in-mplayer-and-romp.patch
 License:	GPLv2+
 Group:		Publishing
 Summary:	DVD menu generator
@@ -20,7 +21,7 @@ BuildRequires:	mjpegtools
 BuildRequires:	libdvdread-devel
 BuildRequires:	dvd-slideshow
 BuildRequires:	k3b
-BuildRequires:	xine-ui
+BuildRequires:	pkgconfig(libavcodec)
 BuildRequires:	ghostscript
 BuildRequires:	pkgconfig(libkexiv2)
 Requires:	zip
@@ -29,7 +30,6 @@ Requires:	ffmpeg
 Requires:	mjpegtools
 Requires:	dvd-slideshow
 Requires:	k3b
-Requires:	xine-ui
 Obsoletes:      kde4-%name < 0.6.0-4
 Provides:       kde4-%name = %version-%release
 
