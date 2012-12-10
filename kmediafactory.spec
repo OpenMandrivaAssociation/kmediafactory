@@ -1,45 +1,47 @@
-%define develname %mklibname %name -d
+%define develname %mklibname %{name} -d
 
+Summary:	DVD menu generator
 Name:		kmediafactory
 Version:	0.8.1
-Release:	2
-URL:		http://code.google.com/p/kmediafactory/
-Source0:	http://kmediafactory.googlecode.com/files/%{name}-%{version}.tar.bz2
-Patch0:		kmediafactory-0.8.1-compile.patch
-Patch1:		kmediafactory-0.8.1-preview-in-mplayer-and-romp.patch
+Release:	1
 License:	GPLv2+
 Group:		Publishing
-Summary:	DVD menu generator
+URL:		http://code.google.com/p/kmediafactory/
+Source0:	http://kmediafactory.googlecode.com/files/%{name}-%{version}.tar.bz2
+Patch0:		kmediafactory-0.8.1-ffmpeg0.11.patch
+Patch1:		kmediafactory-0.8.1-gcc47.patch
+Patch2:		kmediafactory-0.8.1-link.patch
 BuildRequires:	kdelibs4-devel
-BuildRequires:	fontconfig-devel
-BuildRequires:	phonon-devel
+BuildRequires:	pkgconfig(dvdread)
+BuildRequires:	pkgconfig(fontconfig)
+BuildRequires:	pkgconfig(libkexiv2)
+BuildRequires:	pkgconfig(phonon)
 BuildRequires:	gettext
 BuildRequires:	zip
 BuildRequires:	dvdauthor
 BuildRequires:	ffmpeg
 BuildRequires:	mjpegtools
-BuildRequires:	libdvdread-devel
+BuildRequires:	ffmpeg-devel
 BuildRequires:	dvd-slideshow
 BuildRequires:	k3b
-BuildRequires:	pkgconfig(libavcodec)
+BuildRequires:	xine-ui
 BuildRequires:	ghostscript
-BuildRequires:	pkgconfig(libkexiv2)
+BuildRequires:	docbook-dtd42-xml
+BuildRequires:	docbook-style-xsl
 Requires:	zip
 Requires:	dvdauthor
 Requires:	ffmpeg
 Requires:	mjpegtools
 Requires:	dvd-slideshow
 Requires:	k3b
-Obsoletes:      kde4-%name < 0.6.0-4
-Provides:       kde4-%name = %version-%release
+Requires:	xine-ui
 
 %description
 KMediaFactory is an easy to use template based dvd authoring tool.
 You can quickly create DVD menus for home videos and TV recordings
-in three simple steps. 
+in three simple steps.
 
 %files -f %{name}.lang
-%defattr(-,root,root)
 %{_kde_bindir}/*
 %{_kde_datadir}/applications/kde4/*.desktop
 %{_kde_datadir}/config/*
@@ -57,95 +59,87 @@ in three simple steps.
 %define kmediafactorykstore_major 0
 %define libkmediafactorykstore %mklibname kmediafactorykstore %{kmediafactorykstore_major}
 
-%package -n %libkmediafactorykstore
-Summary:    %name library
-Group:      System/Libraries
-Obsoletes:  %{mklibname kde4-kmediafactory 0}
+%package -n %{libkmediafactorykstore}
+Summary:	%{name} library
+Group:		System/Libraries
 
-%description -n %libkmediafactorykstore
-%name library.
+%description -n %{libkmediafactorykstore}
+%{name} library.
 
-%files -n %libkmediafactorykstore
-%defattr(-,root,root,-)
-%_kde_libdir/libkmediafactorykstore.so.%{kmediafactorykstore_major}*
+%files -n %{libkmediafactorykstore}
+%{_kde_libdir}/libkmediafactorykstore.so.%{kmediafactorykstore_major}*
 
 #--------------------------------------------------------------------
 
 %define kmf_major 0
 %define libkmf %mklibname kmf %{kmf_major}
 
-%package -n %libkmf
-Summary: %name library
-Group: System/Libraries
-Obsoletes:  %{mklibname kde4-kmediafactory 0}
+%package -n %{libkmf}
+Summary:	%{name} library
+Group:		System/Libraries
 
-%description -n %libkmf
-%name library.
+%description -n %{libkmf}
+%{name} library.
 
-%files -n %libkmf
-%defattr(-,root,root,-)
-%_kde_libdir/libkmf.so.%{kmf_major}*
+%files -n %{libkmf}
+%{_kde_libdir}/libkmf.so.%{kmf_major}*
 
 #--------------------------------------------------------------------
 
 %define kmediafactoryinterfaces_major 0
 %define libkmediafactoryinterfaces %mklibname kmediafactoryinterfaces %{kmediafactoryinterfaces_major}
 
-%package -n %libkmediafactoryinterfaces
-Summary: %name library
-Group: System/Libraries
-Obsoletes:  %{mklibname kde4-kmediafactory 0}
+%package -n %{libkmediafactoryinterfaces}
+Summary:	%{name} library
+Group:		System/Libraries
 
-%description -n %libkmediafactoryinterfaces
-%name library.
+%description -n %{libkmediafactoryinterfaces}
+%{name} library.
 
-%files -n %libkmediafactoryinterfaces
-%defattr(-,root,root,-)
-%_kde_libdir/libkmediafactoryinterfaces.so.%{kmediafactoryinterfaces_major}*
+%files -n %{libkmediafactoryinterfaces}
+%{_kde_libdir}/libkmediafactoryinterfaces.so.%{kmediafactoryinterfaces_major}*
 
 #--------------------------------------------------------------------
 
 %package -n	%{develname}
 Summary:	Development headers and libraries for %{name}
 Group:		Development/C++
-Requires:	%{libkmediafactoryinterfaces} = %{version}
-Requires:       %{libkmf} = %{version}
-Requires:       %{libkmediafactorykstore} = %{version}
+Requires:	%{libkmediafactoryinterfaces} = %{version}-%{release}
+Requires:	%{libkmf} = %{version}-%{release}
+Requires:	%{libkmediafactorykstore} = %{version}-%{release}
 Provides:	lib%{name}-devel = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
-Obsoletes:	%mklibname -d %name 0
-Obsoletes:	%mklibname kde4-kmediafactory -d
 
 %description -n	%{develname}
 Development libraries and headers for %{name}.
 
 %files -n %{develname}
-%defattr(-,root,root)
 %{_kde_includedir}/%{name}
 %{_kde_libdir}/lib*.so
 
 #--------------------------------------------------------------------
 
 %prep
-%setup -q -n %{name}-%{version}
-%apply_patches
+%setup -q
+%patch0 -p0 -b .ffmpeg
+%patch1 -p0 -b .gcc
+%patch2 -p0 -b .link
 
 %build
 %cmake_kde4
+# Really dirty hack to avoid field 'st_atim' has incomplete type (etc) errors
+sed -i s,-I/usr/include/libavutil,,g lib/CMakeFiles/kmf.dir/flags.make
 %make
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std -C build
 
 desktop-file-install --vendor='' \
-	--dir=%buildroot%{_kde_datadir}/applications/kde4 \
+	--dir=%{buildroot}%{_kde_datadir}/applications/kde4 \
 	--remove-key='Encoding' \
 	--remove-category='Application' \
 	--add-category='Qt;AudioVideoEditing' \
-	%buildroot%{_kde_datadir}/applications/kde4/*.desktop
+	%{buildroot}%{_kde_datadir}/applications/kde4/*.desktop
 
 %find_lang %{name} --all-name --with-html
 
-%clean
-rm -rf %{buildroot}

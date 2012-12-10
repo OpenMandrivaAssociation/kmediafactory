@@ -1,0 +1,31 @@
+--- lib/kmftools.cpp.gcc	2012-07-30 04:47:29.000000000 +0000
++++ lib/kmftools.cpp	2012-07-30 04:48:03.000000000 +0000
+@@ -51,6 +51,7 @@
+ #include <fontconfig/fontconfig.h>
+ #include <sys/stat.h>
+ #include <stdlib.h>
++#include <unistd.h>
+ 
+ #include "Q4puGenericSignalSpy.h"
+ 
+--- plugins/video/videoobject.cpp.gcc	2012-07-30 05:18:43.000000000 +0000
++++ plugins/video/videoobject.cpp	2012-07-30 05:19:19.000000000 +0000
+@@ -597,15 +597,15 @@
+             lang = "xx";
+         }
+ 
+-        QDomElement sub = doc.createElement("subpicture");
++        QDomElement sub2 = doc.createElement("subpicture");
+ 
+         if ((lang == preferredLanguage) && (subFound == false)) {
+             subFound = true;
+             subTrack = i;
+         }
+ 
+-        sub.setAttribute("lang", lang);
+-        titles.appendChild(sub);
++        sub2.setAttribute("lang", lang);
++        titles.appendChild(sub2);
+         ++i;
+     }
+ 
