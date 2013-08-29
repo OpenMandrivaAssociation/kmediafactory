@@ -3,7 +3,7 @@
 Summary:	DVD menu generator
 Name:		kmediafactory
 Version:	0.8.1
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Publishing
 URL:		http://code.google.com/p/kmediafactory/
@@ -11,6 +11,7 @@ Source0:	http://kmediafactory.googlecode.com/files/%{name}-%{version}.tar.bz2
 Patch0:		kmediafactory-0.8.1-ffmpeg0.11.patch
 Patch1:		kmediafactory-0.8.1-gcc47.patch
 Patch2:		kmediafactory-0.8.1-link.patch
+Patch5:         kmediafactory-0.8.1-i18n-ru.patch
 BuildRequires:	kdelibs4-devel
 BuildRequires:	pkgconfig(dvdread)
 BuildRequires:	pkgconfig(fontconfig)
@@ -124,6 +125,8 @@ Development libraries and headers for %{name}.
 %patch0 -p0 -b .ffmpeg
 %patch1 -p0 -b .gcc
 %patch2 -p0 -b .link
+%patch5 -p1 -b .ru-i18n
+
 
 %build
 %cmake_kde4
