@@ -3,7 +3,7 @@
 Summary:	DVD menu generator
 Name:		kmediafactory
 Version:	0.8.1
-Release:	2
+Release:	3
 License:	GPLv2+
 Group:		Publishing
 URL:		http://code.google.com/p/kmediafactory/
