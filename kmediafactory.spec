@@ -21,9 +21,9 @@ BuildRequires:	pkgconfig(phonon)
 BuildRequires:	gettext
 BuildRequires:	zip
 BuildRequires:	dvdauthor
-BuildRequires:	ffmpeg
+BuildRequires:	ffmpeg >= 2.5.4
 BuildRequires:	mjpegtools
-BuildRequires:	ffmpeg-devel
+BuildRequires:	ffmpeg-devel >= 2.5.4
 BuildRequires:	dvd-slideshow
 BuildRequires:	k3b
 #BuildRequires:	xine-ui
