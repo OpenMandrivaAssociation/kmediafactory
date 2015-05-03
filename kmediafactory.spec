@@ -1,16 +1,18 @@
-%define develname %mklibname %{name} -d
-
 Summary:	DVD menu generator
 Name:		kmediafactory
 Version:	0.8.1
-Release:	2
+Release:	8
 License:	GPLv2+
 Group:		Publishing
-URL:		http://code.google.com/p/kmediafactory/
+Url:		http://code.google.com/p/kmediafactory/
 Source0:	http://kmediafactory.googlecode.com/files/%{name}-%{version}.tar.bz2
 Patch0:		kmediafactory-0.8.1-ffmpeg0.11.patch
 Patch1:		kmediafactory-0.8.1-gcc47.patch
 Patch2:		kmediafactory-0.8.1-link.patch
+Patch3:		kmediafactory-0.8.1-ffmpeg-2.0.patch
+Patch4:		kmediafactory-0.8.1-fdr-desktop_validate.patch
+Patch5:		kmediafactory-0.8.1-i18n-ru.patch
+Patch6:		kmediafactory-0.8.1-ffmpeg2.4.patch
 BuildRequires:	kdelibs4-devel
 BuildRequires:	pkgconfig(dvdread)
 BuildRequires:	pkgconfig(fontconfig)
@@ -19,12 +21,12 @@ BuildRequires:	pkgconfig(phonon)
 BuildRequires:	gettext
 BuildRequires:	zip
 BuildRequires:	dvdauthor
-BuildRequires:	ffmpeg >= 2.5.4
+BuildRequires:	ffmpeg
 BuildRequires:	mjpegtools
-BuildRequires:	ffmpeg-devel >= 2.5.4
+BuildRequires:	ffmpeg-devel
 BuildRequires:	dvd-slideshow
 BuildRequires:	k3b
-BuildRequires:	xine-ui
+#BuildRequires:	xine-ui
 BuildRequires:	ghostscript
 BuildRequires:	docbook-dtd42-xml
 BuildRequires:	docbook-style-xsl
@@ -100,20 +102,20 @@ Group:		System/Libraries
 %{_kde_libdir}/libkmediafactoryinterfaces.so.%{kmediafactoryinterfaces_major}*
 
 #--------------------------------------------------------------------
+%define devname %mklibname %{name} -d
 
-%package -n	%{develname}
+%package -n	%{devname}
 Summary:	Development headers and libraries for %{name}
 Group:		Development/C++
 Requires:	%{libkmediafactoryinterfaces} = %{version}-%{release}
 Requires:	%{libkmf} = %{version}-%{release}
 Requires:	%{libkmediafactorykstore} = %{version}-%{release}
-Provides:	lib%{name}-devel = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
 
-%description -n	%{develname}
+%description -n	%{devname}
 Development libraries and headers for %{name}.
 
-%files -n %{develname}
+%files -n %{devname}
 %{_kde_includedir}/%{name}
 %{_kde_libdir}/lib*.so
 
@@ -124,6 +126,10 @@ Development libraries and headers for %{name}.
 %patch0 -p0 -b .ffmpeg
 %patch1 -p0 -b .gcc
 %patch2 -p0 -b .link
+%patch3 -p1 -b .ffmpeg2.0~
+%patch4 -p1
+%patch5 -p1
+%patch6 -p1 -b .ffmpeg2.4~
 
 %build
 %cmake_kde4

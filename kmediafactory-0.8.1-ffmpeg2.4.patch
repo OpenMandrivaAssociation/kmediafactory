@@ -1,0 +1,21 @@
+diff -Nur kmediafactory-0.8.1/lib/videofile.cpp kmediafactory-0.8.1.orig/lib/videofile.cpp
+--- kmediafactory-0.8.1/lib/videofile.cpp	2011-08-01 09:47:08.000000000 +0200
++++ kmediafactory-0.8.1.orig/lib/videofile.cpp	2014-11-16 14:01:31.177746175 +0100
+@@ -67,7 +67,7 @@
+     close();
+ 
+     if ( avformat_open_input(&avFromatContext, QFile::encodeName(filename).constData(), 0L, 0L) != 0 ||
+-         av_find_stream_info(avFromatContext) < 0) {
++         avformat_find_stream_info(avFromatContext, NULL) < 0) {
+         close();
+     }
+     else {
+@@ -88,7 +88,7 @@
+     }
+ 
+     if (avFromatContext) {
+-        av_close_input_file(avFromatContext);
++        avformat_close_input(&avFromatContext);
+         avFromatContext = 0L;
+     }
+ 

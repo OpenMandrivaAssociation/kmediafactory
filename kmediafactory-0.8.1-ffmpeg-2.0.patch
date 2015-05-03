@@ -1,0 +1,11 @@
+--- kmediafactory-0.8.1/lib/videofile.cpp~	2013-07-15 13:23:11.194051023 +0800
++++ kmediafactory-0.8.1/lib/videofile.cpp	2013-07-15 13:23:42.724949764 +0800
+@@ -143,7 +143,7 @@
+ 
+     avVideoCodecContext->workaround_bugs = 1;
+ 
+-    return avcodec_open(avVideoCodecContext, avVideoCodec)>=0;
++    return avcodec_open2(avVideoCodecContext, avVideoCodec, NULL)>=0;
+ }
+ 
+ int VideoFile::getWidth()
