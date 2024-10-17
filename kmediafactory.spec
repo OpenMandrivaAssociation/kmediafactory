@@ -6,7 +6,7 @@ Version:	0.8.1
 Release:	3
 License:	GPLv2+
 Group:		Publishing
-URL:		http://code.google.com/p/kmediafactory/
+URL:		https://code.google.com/p/kmediafactory/
 Source0:	http://kmediafactory.googlecode.com/files/%{name}-%{version}.tar.bz2
 Patch0:		kmediafactory-0.8.1-ffmpeg0.11.patch
 Patch1:		kmediafactory-0.8.1-gcc47.patch
