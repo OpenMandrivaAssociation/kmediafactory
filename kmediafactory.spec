@@ -12,6 +12,7 @@ Patch0:		kmediafactory-0.8.1-ffmpeg0.11.patch
 Patch1:		kmediafactory-0.8.1-gcc47.patch
 Patch2:		kmediafactory-0.8.1-link.patch
 Patch5:         kmediafactory-0.8.1-i18n-ru.patch
+BuildRequires:	make
 BuildRequires:	kdelibs4-devel
 BuildRequires:	pkgconfig(dvdread)
 BuildRequires:	pkgconfig(fontconfig)
